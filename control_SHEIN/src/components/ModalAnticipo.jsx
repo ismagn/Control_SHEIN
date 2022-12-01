@@ -1,66 +1,54 @@
+import React from 'react'
 import { useState } from 'react'
 
-function ModalClientes({cerrarBotonNuevoCliente,clienteEditar,setClienteEditar,setClientes,clientes,setModalClientes,idFecha}) {
-    const[nombre,setNombre]=useState("");
+function ModalAnticipo({idCliente,setModalAnticipo,anticipos,setAnticipos}) {
+    const [cantidad,setCantidad]=useState()
     const [error,setError]=useState(false);
-
-   
-      
-        
-
-    const generarId=()=>{
-        let rand=Date.now()
-        return rand
-      }
 
     const handleSubmit=(e)=>{
         e.preventDefault();
-        if (nombre==""){
+        if (cantidad==""){
             setError(true)
         }else{
             setError(false)
-            setModalClientes(false)
+            setModalAnticipo(false)
             //setAnimarModal(false)
 
             
-           const objetoCliente ={
-            nombre,
-            idFecha:idFecha
+           const objetoAnticipo ={
+            cantidad,
+            id:idCliente
            }
            
-                objetoCliente.id=generarId()
-                //validarFecha(fecha)
-                setClientes([...clientes,objetoCliente])
+                setAnticipos([...anticipos,objetoAnticipo])
                 
            }
         }
-    
-    
 
     return (
         <div className='bg-black h-full w-full fixed top-0 opacity-90 cursor-pointer'>
             <div className='bg-white mt-10 mx-auto rounded-full w-7 text-center cursor-pointer'>
                 <input className='' type="button" value="X" 
-                onClick={cerrarBotonNuevoCliente}
+                onClick={()=>setModalAnticipo(false)}
                 />
             </div>
             <form className=' w-3/4 bg-red-50 mx-auto my-10 h-2/5  p-5' action=""
             onSubmit={handleSubmit}
             >
                 <div className=' h-10'>
-                <h2 className='text-black font-bold text-center text-lg'>NUEVO CLIENTE</h2>
+                <h2 className='text-black font-bold text-center text-lg'>NUEVO ANTICIPO</h2>
                 </div>
                 <div className='h-2 bg-white'></div>
                 <div>
-                    <label className='text-xl font-bold' htmlFor="nombre">Nombre</label>
-                    <input className='mb-5 block w-full h-10 border-2' type="text" id='nombre'
-                    value={nombre}
-                    onChange={e=>setNombre(e.target.value)}
+                    <label className='text-xl font-bold' htmlFor="cantidad">Cantidad</label>
+                    <input className='mb-5 block w-full h-10 border-2' type="number" id='cantidad'
+                    value={cantidad}
+                    onChange={e=>setCantidad(Number(e.target.value))}
                     />
 
                     
                     <div className='text-center my-5 cursor-pointer'>
-                    <input className=' bg-red-300 cursor-pointer rounded-lg p-2 font-bold' type="submit" value="AÑADIR CLIENTE" />
+                    <input className=' bg-red-300 cursor-pointer rounded-lg p-2 font-bold' type="submit" value="AÑADIR ANTICIPO" />
                     </div>
                     <div>
                     {error &&
@@ -74,4 +62,4 @@ function ModalClientes({cerrarBotonNuevoCliente,clienteEditar,setClienteEditar,s
     )
 }
 
-export default ModalClientes
+export default ModalAnticipo

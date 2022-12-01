@@ -9,6 +9,16 @@ function ModalFecha({setModalFecha,fechas,setFechas}) {
         return rand
       }
 
+    const formatearFecha=(fecha)=>{
+        const fechaNueva=new Date(fecha)
+        const opciones={
+            year:'numeric',
+            month:'long',
+            day:'2-digit',
+        }
+        return fechaNueva.toLocaleDateString('es-ES',opciones)
+    }
+
     const handleSubmit =(e)=>{
         e.preventDefault();
 
@@ -19,15 +29,20 @@ function ModalFecha({setModalFecha,fechas,setFechas}) {
             setModalFecha(false)
             //setAnimarModal(false)
            const objetoFecha ={
-            fecha,
+            fecha:formatearFecha(fecha),
             id:generarId()
            }
-           setFechas(...fechas,objetoFecha)
+           setFechas([...fechas,objetoFecha])
     }
 }
 
     return (
         <div className='bg-black h-screen w-full fixed top-0 opacity-90'>
+            <div className='bg-white mt-10 mx-auto rounded-full w-7 text-center cursor-pointer'>
+                <input className='' type="button" value="X" 
+                onClick={()=>setModalFecha(false)}
+                />
+            </div>
             <form className='w-5/6 bg-white h-2/4 text-center mx-auto my-10 p-10'action=""
             onSubmit={handleSubmit}>
                 <h2 className='text-2xl font-bold text-pink-700 shadow-lg'>AGREGA UNA FECHA</h2>

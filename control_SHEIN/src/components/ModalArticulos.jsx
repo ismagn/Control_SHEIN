@@ -55,10 +55,10 @@ function ModalArticulos({articulos,setArticulos,setModalArticulos,cerrarBotonNue
                     <label className='text-xl font-bold' htmlFor="precio">Precio</label>
                     <input className='block w-full h-10 border-2' type="number" id='precio' 
                     value={precio}
-                    onChange={e=>setPrecio(e.target.value)}
+                    onChange={e=>setPrecio(Number(e.target.value))}
                     />
                     <div className='text-center my-5 cursor-pointer'>
-                    <input className=' bg-red-300 cursor-pointer rounded-lg p-2 font-bold' type="submit" value="AÑADIR CLIENTE" />
+                    <input className=' bg-red-300 cursor-pointer rounded-lg p-2 font-bold' type="submit" value="AÑADIR ARTICULO" />
                     </div>
                     <div>
                     {error2 &&

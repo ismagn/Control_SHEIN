@@ -11,8 +11,19 @@ import ListarFechas from './ListarFechas'
 
 function App() {
   const [validClientes,setValidClientes]=useState(false)
-  const [fechas,setFechas]=useState([])
+  const [fechas,setFechas]=useState(JSON.parse(localStorage.getItem('fechas')) ?? [])
   const [modalFecha,setModalFecha]=useState(false)
+  const [idFecha,setIdFecha]=useState()
+
+  useEffect(()=>{
+    localStorage.setItem('fechas',JSON.stringify(fechas));
+  },[fechas])
+
+
+  const mostrarClienteFecha =(id)=>{
+    setIdFecha(id)
+    setValidClientes(true)
+  }
 
   return (
     <>
@@ -21,11 +32,16 @@ function App() {
     </div>
     
     {validClientes ? (
-      <Clientes/>
+      <Clientes
+      setValidClientes={setValidClientes}
+      idFecha={idFecha}
+      />
     ) : (
         <ListarFechas
         fechas={fechas}
         setValidClientes={setValidClientes}
+        mostrarClienteFecha={mostrarClienteFecha}
+        setModalFecha={setModalFecha}
         />
     )}
 
@@ -33,15 +49,11 @@ function App() {
       <ModalFecha
       setModalFecha={setModalFecha}
       fechas={fechas}
-      setFechas={setFechas}
+      setFechas={setFechas} 
       />
     )}
     
-    <div className='bg-pink-500 fixed cursor-pointer bottom-10 right-10 rounded-full w-10 text-center'>
-            <input className='text-4xl text-white cursor-pointer' type="button" value="+" 
-            onClick={()=>setModalFecha(true)}
-            />
-        </div>
+    
     </>
   )
 }

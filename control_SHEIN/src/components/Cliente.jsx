@@ -31,14 +31,11 @@ function Cliente({i,mostrarInfoCliente,eliminarCliente}) {
             leadingActions={leadingActions()}
             trailingActions={trailingActions()}
             >
-        <div className='cursor-pointer bg-pink-50 h-14 p-4 w-full grid grid-cols-2 gap-10 rounded-md shadow-lg text-center  text-lg font-bold mb-5'
+        <div className='cursor-pointer bg-white h-14 p-4 w-full rounded-md shadow-lg text-center  text-lg font-bold mb-5'
         onClick={()=>mostrarInfoCliente(i.id)}
         >
             <div>
             <h2 className='text-purple-500'>{i.nombre}</h2>
-            </div>
-            <div>
-            <h2 className='text-slate-500'>{i.fecha}</h2>
             </div>
         </div>
             </SwipeableListItem>

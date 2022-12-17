@@ -1,8 +1,10 @@
 import React from 'react'
+import { useEffect } from 'react'
 import { useState } from 'react'
 
-function ModalFecha({setModalFecha,fechas,setFechas}) {
+function ModalFecha({setModalFecha,fechas,setFechas,editarFecha,setEditarFecha}) {
     const [fecha,setFecha]=useState()
+
 
     const generarId=()=>{
         let rand=Date.now()
@@ -22,17 +24,26 @@ function ModalFecha({setModalFecha,fechas,setFechas}) {
     const handleSubmit =(e)=>{
         e.preventDefault();
 
-        if (fecha==""){
-            alert("no ingresaste una fecha valida");
+        if (fecha==null){
+            alert("ingresa una fecha valida");
         }else{
             
             setModalFecha(false)
             //setAnimarModal(false)
            const objetoFecha ={
             fecha:formatearFecha(fecha),
-            id:generarId()
+            
            }
-           setFechas([...fechas,objetoFecha])
+
+           if (editarFecha.id) {
+            objetoFecha.id=editarFecha.id
+           const fechasActualizadas=fechas.map(i=>i.id === editarFecha.id ? objetoFecha : i)
+           setFechas(fechasActualizadas)
+           setEditarFecha({})
+           } else {
+            objetoFecha.id=generarId()
+            setFechas([...fechas,objetoFecha])
+           }
     }
 }
 
@@ -50,10 +61,9 @@ function ModalFecha({setModalFecha,fechas,setFechas}) {
                 value={fecha} 
                 onChange={e=>setFecha(e.target.value)}
                 />
-                <div className='mt-10 bg-pink-500 w-2/3 mx-auto text-white p-1'>
-                    <input type="submit" value="Agregar" 
+                    <input className='mt-10 bg-pink-500 w-2/3 mx-auto text-white p-1' type="submit" value="Agregar" 
                     />
-                </div>
+                
             </form>
         </div>
     )

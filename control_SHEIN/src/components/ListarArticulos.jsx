@@ -2,10 +2,10 @@ import React from 'react'
 import { useState } from 'react';
 import MostrarArticulo from './MostrarArticulo'
 
-function ListarArticulos({articulos,setModalArticulos,idCliente,setTotal}) {
+function ListarArticulos({articulos,setModalArticulos,idCliente,setTotal,borrarArticulo}) {
 
 
-    const articuloSeleccionado = articulos.filter(i=>i.id==idCliente); 
+    const articuloSeleccionado = articulos.filter(i=>i.idCliente==idCliente); 
 
     const SumaPrecioArticulos=()=>{
         const res = articuloSeleccionado.map(i=>i.precio)
@@ -30,7 +30,7 @@ function ListarArticulos({articulos,setModalArticulos,idCliente,setTotal}) {
                     i={i} 
                     key={i.id}
                     cont={cont++}
-                    
+                    borrarArticulo={borrarArticulo}
                     />
                     </>
                 ))

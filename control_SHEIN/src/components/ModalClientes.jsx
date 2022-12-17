@@ -1,12 +1,15 @@
+import { useEffect } from 'react';
 import { useState } from 'react'
 
-function ModalClientes({cerrarBotonNuevoCliente,clienteEditar,setClienteEditar,setClientes,clientes,setModalClientes,idFecha}) {
+function ModalClientes({cerrarBotonNuevoCliente,editarCliente,setEditarCliente,setClientes,clientes,setModalClientes,idFecha}) {
     const[nombre,setNombre]=useState("");
     const [error,setError]=useState(false);
 
-   
-      
-        
+    useEffect(()=>{
+        if (Object.keys(editarCliente).length>0) {
+            setNombre(editarCliente.nombre)
+        }
+    },[])
 
     const generarId=()=>{
         let rand=Date.now()
@@ -25,13 +28,21 @@ function ModalClientes({cerrarBotonNuevoCliente,clienteEditar,setClienteEditar,s
             
            const objetoCliente ={
             nombre,
-            idFecha:idFecha
+           }
+
+           if (editarCliente.id) {
+            objetoCliente.id=editarCliente.id
+            objetoCliente.idFecha=editarCliente.idFecha
+            const clientesActualizados = clientes.map(i=>i.id === editarCliente.id ? objetoCliente : i )
+            setClientes(clientesActualizados)
+            setEditarCliente({})
+           } else {
+            objetoCliente.id=generarId()
+            objetoCliente.idFecha=idFecha
+            setClientes([...clientes,objetoCliente])
            }
            
-                objetoCliente.id=generarId()
-                //validarFecha(fecha)
-                setClientes([...clientes,objetoCliente])
-                
+        
            }
         }
     

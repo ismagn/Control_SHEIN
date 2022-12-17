@@ -4,12 +4,12 @@ import InfoCliente from './InfoCliente'
 import ListarClientes from './ListarClientes'
 import ModalClientes from './ModalClientes'
 
-function Clientes({idFecha,setValidClientes}) {
+function Clientes({idFecha,setValidClientes,fechas}) {
   const [clientes,setClientes]=useState(JSON.parse(localStorage.getItem('clientes')) ?? []);
-  const [clienteEditar,setClienteEditar]=useState({});
   const [modalClientes,setModalClientes]=useState(false);
   const [infoCliente,setInfoCliente]=useState(false);
   const [idCliente,setIdCliente]=useState();
+  const [editarCliente,setEditarCliente]=useState({});
 
 
   useEffect(()=>{
@@ -17,13 +17,17 @@ function Clientes({idFecha,setValidClientes}) {
   },[clientes])
 
   const eliminarCliente=(id)=>{
-    const res=confirm("¿seguro que deseas eliminar este elemento?")
+    const res=confirm("¿seguro que deseas eliminar este cliente y sus datos?")
     if (res) {
       const actualizarClientes = clientes.filter(i=>i.id!==id)
     setClientes(actualizarClientes)
     }
   }
   
+  const MetodoEditarCliente=(i)=>{
+    setEditarCliente(i)
+    setModalClientes(true)
+  }
 
   const mostrarInfoCliente =(id)=>{
     setIdCliente(id)
@@ -43,7 +47,9 @@ function Clientes({idFecha,setValidClientes}) {
         <InfoCliente
         clientes={clientes}
         idCliente={idCliente}
+        idFecha={idFecha}
         setInfoCliente={setInfoCliente}
+        fechas={fechas}
         />
         </>
       ):
@@ -57,6 +63,7 @@ function Clientes({idFecha,setValidClientes}) {
       eliminarCliente={eliminarCliente}
       idFecha={idFecha}
       setValidClientes={setValidClientes}
+      MetodoEditarCliente={MetodoEditarCliente}
       />
         </>
       }
@@ -66,8 +73,8 @@ function Clientes({idFecha,setValidClientes}) {
     {modalClientes && 
       <ModalClientes
       cerrarBotonNuevoCliente={cerrarBotonNuevoCliente}
-      clienteEditar={clienteEditar}
-      setClienteEditar={setClienteEditar}
+      editarCliente={editarCliente}
+      setEditarCliente={setEditarCliente}
       clientes={clientes}
       setClientes={setClientes}
       setModalClientes={setModalClientes}

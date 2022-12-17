@@ -6,7 +6,7 @@ import ModalAnticipo from './ModalAnticipo';
 import ModalArticulos from './ModalArticulos';
 import PanelAnticipos from './PanelAnticipos';
 
-function InfoCliente({idCliente,clientes,setInfoCliente}) {
+function InfoCliente({idCliente,idFecha,clientes,setInfoCliente,fechas}) {
 
     const [articulos,setArticulos]=useState(JSON.parse(localStorage.getItem('articulos')) ?? []);
     const [modalArticulos,setModalArticulos]=useState(false);
@@ -22,9 +22,10 @@ function InfoCliente({idCliente,clientes,setInfoCliente}) {
         const sumAn=newRes.reduce((acc,des)=>{
             return acc+des;
         },0)
-        const restante=total-sumAn
+        const restant=total-sumAn
         setMostrarAnticipo(sumAn)
-        setRestante(restante)
+        setRestante(restant)
+        
     })
 
     useEffect(()=>{
@@ -33,9 +34,32 @@ function InfoCliente({idCliente,clientes,setInfoCliente}) {
 
     useEffect(()=>{
         localStorage.setItem('articulos',JSON.stringify(articulos));
-      },[articulos])
+    },[articulos])
+
+    const borrarArticulo=(id)=>{
+        const res=confirm("¿segura que deseas borrar este articulo?")
+        if (res) {
+            const articulosActualizados=articulos.filter(i=>i.id !== id)
+            setArticulos(articulosActualizados)
+        }
+        
+    }
+
+    const borrarAnticipo=()=>{  
+        const nuevosAnticipos = anticipos.filter(i=>i.id !== idCliente)
+        setAnticipos(nuevosAnticipos)
+    }
     
-    const clienteSeleccionado = clientes.filter(i=>i.id==idCliente);        
+    const seleccionCliente=()=>{
+        const clienteSeleccionado = clientes.filter(i=>i.id==idCliente);        
+        return clienteSeleccionado;
+    }
+
+    const seleccionFecha=()=>{
+        const fechaSeleccionada = fechas.filter(i=>i.id==idFecha);        
+        const res=fechaSeleccionada.map(i=>i.fecha)
+        return res;
+    }
 
     const cerrarBotonNuevoArticulo=()=>{
         setModalArticulos(false)
@@ -43,7 +67,7 @@ function InfoCliente({idCliente,clientes,setInfoCliente}) {
 
     return (
         <div>
-            {clienteSeleccionado.map(i=>(
+            {seleccionCliente().map(i=>(
                 <>
                 <div className=' flex items-center justify-between px-5 bg-white'>
                     <div className='mr-20'>
@@ -52,7 +76,7 @@ function InfoCliente({idCliente,clientes,setInfoCliente}) {
                         >Atras</button>
                     </div>
                     <div className='text-center'>
-                        <h2 className='text-md opacity-60 font-bold'>Resgistrado: {i.fecha}</h2>
+                        <h2 className='text-md opacity-60 font-bold'>Fecha: {seleccionFecha()}</h2>
                         <h2 className='text-xl font-bold opacity-60 '>{i.nombre}</h2>
                     </div>
                 </div>
@@ -67,7 +91,7 @@ function InfoCliente({idCliente,clientes,setInfoCliente}) {
                 setModalAnticipo={setModalAnticipo}
                 restante={restante}
                 mostrarAnticipo={mostrarAnticipo}
-                
+                borrarAnticipo={borrarAnticipo}
                 />
             </div>
 
@@ -78,6 +102,7 @@ function InfoCliente({idCliente,clientes,setInfoCliente}) {
                 setModalArticulos={setModalArticulos}
                 idCliente={idCliente}
                 setTotal={setTotal}
+                borrarArticulo={borrarArticulo}
                 />
             </div>
 

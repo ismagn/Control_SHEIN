@@ -18,15 +18,15 @@ function PanelAnticipos({total,setModalAnticipo,restante,mostrarAnticipo,borrarA
             </div>
         </div>
         <div className='w-full text-center'>
-            <button className='p-3 bg-pink-500 rounded-xl m-2'
+            <button className='p-2 bg-pink-500 rounded-xl m-2'
             onClick={()=>setModalAnticipo(true)}
             >Añadir Anticipo</button>
             
-                <button className='bg-slate-400'
-                onClick={()=>borrarAnticipo(i.id)}
-                >borrar anticipo</button>
             
-            
+                <button className='bg-red-600 p-2 rounded-xl'
+                onClick={borrarAnticipo}
+                >Borrar Anticipo</button>
+                
         </div>
         
         </div>

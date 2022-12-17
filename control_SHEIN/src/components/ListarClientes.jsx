@@ -1,19 +1,19 @@
 import React from 'react'
 import Cliente from './Cliente'
 
-function ListarClientes({setModalClientes,clientes,setInfoCliente,setIdCliente,mostrarInfoCliente,eliminarCliente,idFecha,setValidClientes}) {
+function ListarClientes({setModalClientes,clientes,setInfoCliente,setIdCliente,mostrarInfoCliente,eliminarCliente,idFecha,setValidClientes,MetodoEditarCliente}) {
 
     const ClientesFecha = clientes.filter(i=>i.idFecha == idFecha)
     
     return (
         <div>
             <div className='  h-screen'>
-                <div className=''>
-                <button className='bg-white m-2 p-1'
+                <div className='bg-white'>
+                <button className='bg-pink-500 rounded-md text-white m-2 p-1'
                 onClick={()=>setValidClientes(false)}
                 >Atras</button>
-                <h2 className=' my-5 text-center font-bold text-2xl opacity-50'>CLIENTES</h2>
                 </div>
+                <h2 className=' my-5 text-center font-bold text-2xl opacity-50'>CLIENTES</h2>
                 {ClientesFecha.map((i)=>(
                     <Cliente
                     i={i} 
@@ -22,6 +22,7 @@ function ListarClientes({setModalClientes,clientes,setInfoCliente,setIdCliente,m
                     setIdCliente={setIdCliente}
                     mostrarInfoCliente={mostrarInfoCliente}
                     eliminarCliente={eliminarCliente}
+                    MetodoEditarCliente={MetodoEditarCliente}
                     />
                 ))
                     

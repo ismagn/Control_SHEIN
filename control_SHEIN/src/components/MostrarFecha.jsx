@@ -1,11 +1,40 @@
 import React from 'react'
+import {
+  LeadingActions,
+  SwipeableList,
+  SwipeableListItem,
+  SwipeAction,
+  TrailingActions,
+} from 'react-swipeable-list';
+import 'react-swipeable-list/dist/styles.css';
 
-function MostrarFecha({i,mostrarClienteFecha}) {
+function MostrarFecha({i,mostrarClienteFecha,eliminarFecha,metodoEditarFecha}) {
+  const leadingActions=()=>(
+    <LeadingActions>
+        <SwipeAction onClick={()=>metodoEditarFecha(i)}>
+            EDITAR
+        </SwipeAction>
+    </LeadingActions>
+)
+const trailingActions=()=>(
+    <TrailingActions>
+        <SwipeAction onClick={()=>eliminarFecha(i.id)}>
+            ELIMINAR
+        </SwipeAction>
+    </TrailingActions>
+)
   return (
-    <div className='w-3/4 mx-auto'>
-      <h2 className='bg-white p-5 text-center text-2xl w-full rounded-md my-3 hover:scale-110'
+    <div className='w-4/5 mx-auto'>
+      <SwipeableList>
+          <SwipeableListItem
+            leadingActions={leadingActions()}
+            trailingActions={trailingActions()}
+            >
+      <h2 className='bg-white text-purple-500 font-bold p-5 text-center text-xl w-full rounded-md my-3 cursor-pointer'
       onClick={()=>mostrarClienteFecha(i.id)}
       >{i.fecha}</h2>
+        </SwipeableListItem>
+      </SwipeableList>
     </div>
   )
 }

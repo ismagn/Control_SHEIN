@@ -3,3 +3,24 @@ body {
   background-color: rgb(254, 197, 238);
 }
 
+.swipe-action__leading {
+  background-color: rgb(0, 166, 255);
+  color: white;
+  margin-bottom: .8rem;
+  margin-top: 0.5rem;
+}
+
+.swipe-action__trailing {
+  background-color: #d01414;
+  margin-bottom: .8rem;
+  margin-top: 0.5rem;
+  color: white;
+}
+
+.swipeable-list .swipe-action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.4rem;
+  text-align: right;
+}

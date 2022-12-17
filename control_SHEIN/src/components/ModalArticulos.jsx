@@ -6,6 +6,10 @@ function ModalArticulos({articulos,setArticulos,setModalArticulos,cerrarBotonNue
     const [precio,setPrecio]=useState("")
     const [error2,setError2]=useState(false)
     
+    const generarId=()=>{
+        let rand=Date.now()
+        return rand
+      }
 
     const handleSubmit=(e)=>{
         e.preventDefault();
@@ -17,12 +21,12 @@ function ModalArticulos({articulos,setArticulos,setModalArticulos,cerrarBotonNue
             //setAnimarModal(false)
            const objetoArticulo ={
             nombreArticulo,
-            precio
-            
+            precio,
+            idCliente:idCliente
            }
         
            
-                objetoArticulo.id=idCliente
+                objetoArticulo.id=generarId()
                 
                 setArticulos([...articulos,objetoArticulo])
                 

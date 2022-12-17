@@ -1,7 +1,7 @@
 import React from 'react'
-import MostrarFecha from './components/MostrarFecha'
+import MostrarFecha from './MostrarFecha'
 
-function ListarFechas({fechas,setValidClientes,mostrarClienteFecha,setModalFecha}) {
+function ListarFechas({fechas,mostrarClienteFecha,setModalFecha,eliminarFecha,metodoEditarFecha}) {
     return (
         <div>
             <h2 className='text-center m-4 font-bold text-pink-500 text-3xl'>FECHAS</h2>
@@ -10,6 +10,8 @@ function ListarFechas({fechas,setValidClientes,mostrarClienteFecha,setModalFecha
                     i={i} 
                     key={i.id}
                     mostrarClienteFecha={mostrarClienteFecha}
+                    eliminarFecha={eliminarFecha}
+                    metodoEditarFecha={metodoEditarFecha}
                     />
                 ))
                     

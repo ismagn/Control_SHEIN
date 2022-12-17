@@ -15,6 +15,13 @@ function InfoCliente({idCliente,idFecha,clientes,setInfoCliente,fechas}) {
     const [restante,setRestante]=useState()
     const [anticipos,setAnticipos]=useState(JSON.parse(localStorage.getItem('anticipos')) ?? [])
     const [mostrarAnticipo,setMostrarAnticipo]=useState()
+    const [porcentaje,setPorcentaje]=useState()
+
+
+    useEffect(()=>{
+        const nuevoPorcentaje = (((total-restante)/total)*100).toFixed(2)
+        setPorcentaje(nuevoPorcentaje)
+      },[restante])
 
     useEffect(()=>{
         const res=anticipos.filter(i=>i.id==idCliente)
@@ -92,6 +99,7 @@ function InfoCliente({idCliente,idFecha,clientes,setInfoCliente,fechas}) {
                 restante={restante}
                 mostrarAnticipo={mostrarAnticipo}
                 borrarAnticipo={borrarAnticipo}
+                porcentaje={porcentaje}
                 />
             </div>
 

@@ -24,3 +24,13 @@ body {
   font-size: 1.4rem;
   text-align: right;
 }
+
+.modal {
+  opacity: 0;
+  transition: 1s;
+}
+
+.animar{
+  opacity: 1;
+
+}

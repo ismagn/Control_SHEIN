@@ -13,13 +13,27 @@ function App() {
   const [validClientes,setValidClientes]=useState(false)
   const [fechas,setFechas]=useState(JSON.parse(localStorage.getItem('fechas')) ?? [])
   const [modalFecha,setModalFecha]=useState(false)
+  const [animarModal,setAnimarModal]=useState(false)
   const [idFecha,setIdFecha]=useState()
   const [editarFecha,setEditarFecha]=useState({})
+
 
   useEffect(()=>{
     localStorage.setItem('fechas',JSON.stringify(fechas));
   },[fechas])
 
+  const accionesCerrarModalFecha=()=>{
+    setModalFecha(false)
+    setAnimarModal(false)
+  }
+
+  const accionesModalFecha=()=>{
+    setModalFecha(true)
+
+    setTimeout(()=>{
+      setAnimarModal(true)
+    },0)
+  }
 
   const mostrarClienteFecha =(id)=>{
     setIdFecha(id)
@@ -37,6 +51,7 @@ function App() {
   const metodoEditarFecha=(objetoFecha)=>{
     setEditarFecha(objetoFecha)
     setModalFecha(true)
+    setAnimarModal(true)
   }
 
   return (
@@ -56,6 +71,7 @@ function App() {
         fechas={fechas}
         mostrarClienteFecha={mostrarClienteFecha}
         setModalFecha={setModalFecha}
+        accionesModalFecha={accionesModalFecha}
         eliminarFecha={eliminarFecha}
         metodoEditarFecha={metodoEditarFecha}
         />
@@ -68,6 +84,9 @@ function App() {
       setFechas={setFechas}
       editarFecha={editarFecha} 
       setEditarFecha={setEditarFecha}
+      animarModal={animarModal}
+      setAnimarModal={setAnimarModal}
+      accionesCerrarModalFecha={accionesCerrarModalFecha}
       />
     )}
     

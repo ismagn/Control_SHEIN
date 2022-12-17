@@ -24,13 +24,13 @@ const trailingActions=()=>(
     </TrailingActions>
 )
   return (
-    <div className='w-4/5 mx-auto'>
+    <div className='w-4/5 mx-auto '>
       <SwipeableList>
           <SwipeableListItem
             leadingActions={leadingActions()}
             trailingActions={trailingActions()}
             >
-      <h2 className='bg-white text-purple-500 font-bold p-5 text-center text-xl w-full rounded-md my-3 cursor-pointer'
+      <h2 className='bg-white animate-pulse hover:bg-pink-300 active:bg-pink-300 text-purple-500 font-bold p-5 text-center text-xl w-full rounded-md my-3 cursor-pointer'
       onClick={()=>mostrarClienteFecha(i.id)}
       >{i.fecha}</h2>
         </SwipeableListItem>

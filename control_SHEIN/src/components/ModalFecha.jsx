@@ -2,8 +2,9 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
-function ModalFecha({setModalFecha,fechas,setFechas,editarFecha,setEditarFecha}) {
+function ModalFecha({setModalFecha,fechas,setFechas,editarFecha,setEditarFecha,animarModal,setAnimarModal,accionesCerrarModalFecha}) {
     const [fecha,setFecha]=useState()
+    console.log(fecha);
 
 
     const generarId=()=>{
@@ -16,9 +17,15 @@ function ModalFecha({setModalFecha,fechas,setFechas,editarFecha,setEditarFecha})
         const opciones={
             year:'numeric',
             month:'long',
-            day:'2-digit',
+            day:'numeric',
         }
-        return fechaNueva.toLocaleDateString('es-ES',opciones)
+        console.log("hola")
+        const w = fechaNueva.getUTCDate()
+        const x= fechaNueva.getUTCMonth()+1
+        const y= fechaNueva.getUTCFullYear()
+        const f=x+"/"+w+"/"+y
+        const e=new Date(f)
+        return e.toLocaleDateString('es-MX',opciones)
     }
 
     const handleSubmit =(e)=>{
@@ -29,7 +36,7 @@ function ModalFecha({setModalFecha,fechas,setFechas,editarFecha,setEditarFecha})
         }else{
             
             setModalFecha(false)
-            //setAnimarModal(false)
+            setAnimarModal(false)
            const objetoFecha ={
             fecha:formatearFecha(fecha),
             
@@ -48,13 +55,13 @@ function ModalFecha({setModalFecha,fechas,setFechas,editarFecha,setEditarFecha})
 }
 
     return (
-        <div className='bg-black h-screen w-full fixed top-0 opacity-90'>
-            <div className='bg-white mt-10 mx-auto rounded-full w-7 text-center cursor-pointer'>
-                <input className='' type="button" value="X" 
-                onClick={()=>setModalFecha(false)}
-                />
+        <div className='bg-black h-screen w-full fixed top-0 opacity-95'>
+            <div className='bg-white mt-10 mx-auto rounded-full w-7  text-center cursor-pointer'
+            onClick={accionesCerrarModalFecha}
+            >
+                <input className='cursor-pointer' type="button" value="X" />
             </div>
-            <form className='w-5/6 bg-white h-2/4 text-center mx-auto my-10 p-10'action=""
+            <form className={`modal ${animarModal ? "animar" : ""} w-5/6 md:w-2/4 bg-white h-2/4 text-center mx-auto my-10 p-10`}action=""
             onSubmit={handleSubmit}>
                 <h2 className='text-2xl font-bold text-pink-700 shadow-lg'>AGREGA UNA FECHA</h2>
                 <input className='mt-20 w-2/3 h-10 border-pink-500 shadow-xl border-4' type="date" name="" id="fecha"

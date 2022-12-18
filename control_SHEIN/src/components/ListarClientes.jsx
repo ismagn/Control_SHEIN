@@ -7,14 +7,16 @@ function ListarClientes({setModalClientes,clientes,setInfoCliente,setIdCliente,m
     
     return (
         <div>
-            <div className='  h-screen'>
+            <div className='  h-screen '>
                 <div className='bg-white'>
                 <button className='bg-pink-500 rounded-md text-white m-2 p-1'
                 onClick={()=>setValidClientes(false)}
                 >Atras</button>
                 </div>
                 <h2 className=' my-5 text-center font-bold text-2xl opacity-50'>CLIENTES</h2>
+                <div className=' h-3/5 overflow-y-auto'>
                 {ClientesFecha.map((i)=>(
+                    
                     <Cliente
                     i={i} 
                     key={i.id}
@@ -24,10 +26,11 @@ function ListarClientes({setModalClientes,clientes,setInfoCliente,setIdCliente,m
                     eliminarCliente={eliminarCliente}
                     MetodoEditarCliente={MetodoEditarCliente}
                     />
+                    
                 ))
                     
                 }
-                
+                </div>
             </div>
 
             <div className='bg-pink-500 fixed cursor-pointer bottom-10 right-10 rounded-full w-10 text-center'>

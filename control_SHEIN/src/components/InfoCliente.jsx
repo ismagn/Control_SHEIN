@@ -9,6 +9,7 @@ import PanelAnticipos from './PanelAnticipos';
 function InfoCliente({idCliente,idFecha,clientes,setInfoCliente,fechas}) {
 
     const [articulos,setArticulos]=useState(JSON.parse(localStorage.getItem('articulos')) ?? []);
+    const [editarArticulo,setEditarArticulo]=useState({})
     const [modalArticulos,setModalArticulos]=useState(false);
     const [modalAnticipo,setModalAnticipo]=useState(false)
     const [total,setTotal]=useState()
@@ -43,6 +44,12 @@ function InfoCliente({idCliente,idFecha,clientes,setInfoCliente,fechas}) {
         localStorage.setItem('articulos',JSON.stringify(articulos));
     },[articulos])
 
+
+    const metodoEditarArticulo=(i)=>{
+        setEditarArticulo(i)
+        setModalArticulos(true)
+    }
+
     const borrarArticulo=(id)=>{
         const res=confirm("¿segura que deseas borrar este articulo?")
         if (res) {
@@ -70,6 +77,7 @@ function InfoCliente({idCliente,idFecha,clientes,setInfoCliente,fechas}) {
 
     const cerrarBotonNuevoArticulo=()=>{
         setModalArticulos(false)
+        setEditarArticulo({})
       }
 
     return (
@@ -111,6 +119,8 @@ function InfoCliente({idCliente,idFecha,clientes,setInfoCliente,fechas}) {
                 idCliente={idCliente}
                 setTotal={setTotal}
                 borrarArticulo={borrarArticulo}
+                metodoEditarArticulo={metodoEditarArticulo}
+                
                 />
             </div>
 
@@ -121,6 +131,8 @@ function InfoCliente({idCliente,idFecha,clientes,setInfoCliente,fechas}) {
         setArticulos={setArticulos}
         setModalArticulos={setModalArticulos}
         idCliente={idCliente}
+        editarArticulo={editarArticulo}
+        setEditarArticulo={setEditarArticulo}
         />
         }
         {modalAnticipo &&

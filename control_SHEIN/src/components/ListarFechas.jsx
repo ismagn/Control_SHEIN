@@ -13,8 +13,7 @@ function ListarFechas({fechas,mostrarClienteFecha,eliminarFecha,metodoEditarFech
                     eliminarFecha={eliminarFecha}
                     metodoEditarFecha={metodoEditarFecha}
                     />
-                ))
-                    
+                ))   
                 }
             <div className='bg-pink-500 fixed animate-bounce  cursor-pointer bottom-10 right-10 rounded-full w-10 text-center'>
             <input className='text-4xl text-white cursor-pointer' type="button" value="+" 

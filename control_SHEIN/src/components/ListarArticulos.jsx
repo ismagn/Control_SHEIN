@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import MostrarArticulo from './MostrarArticulo'
 
-function ListarArticulos({articulos,setModalArticulos,idCliente,setTotal,borrarArticulo}) {
+function ListarArticulos({articulos,setModalArticulos,idCliente,setTotal,borrarArticulo,metodoEditarArticulo}) {
 
 
     const articuloSeleccionado = articulos.filter(i=>i.idCliente==idCliente); 
@@ -22,6 +22,7 @@ function ListarArticulos({articulos,setModalArticulos,idCliente,setTotal,borrarA
         <div>
             <div className='h-screen'>
                 <h2 className='m-5 text-center font-bold text-2xl opacity-50'>Articulos</h2>
+                <div className='h-2/6  overflow-y-auto'>
                 {
                 articuloSeleccionado.map((i)=>(
                     <>
@@ -31,12 +32,13 @@ function ListarArticulos({articulos,setModalArticulos,idCliente,setTotal,borrarA
                     key={i.id}
                     cont={cont++}
                     borrarArticulo={borrarArticulo}
+                    metodoEditarArticulo={metodoEditarArticulo}
                     />
                     </>
                 ))
                     
                 }
-                
+                </div>
             </div>
             
             <div className='bg-pink-500 fixed cursor-pointer bottom-10 right-10 rounded-full w-10 text-center'>

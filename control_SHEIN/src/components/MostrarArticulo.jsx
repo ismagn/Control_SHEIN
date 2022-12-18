@@ -8,10 +8,10 @@ import {
   } from 'react-swipeable-list';
   import 'react-swipeable-list/dist/styles.css';
 
-function MostrarArticulo({i,cont,borrarArticulo}) {
+function MostrarArticulo({i,cont,borrarArticulo,metodoEditarArticulo}) {
     const leadingActions=()=>(
         <LeadingActions>
-            <SwipeAction onClick={()=>""}>
+            <SwipeAction onClick={()=>metodoEditarArticulo(i)}>
                 EDITAR
             </SwipeAction>
         </LeadingActions>

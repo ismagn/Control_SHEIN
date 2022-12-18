@@ -1,10 +1,17 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 
-function ModalArticulos({articulos,setArticulos,setModalArticulos,cerrarBotonNuevoArticulo,idCliente}) {
+function ModalArticulos({articulos,setArticulos,setModalArticulos,cerrarBotonNuevoArticulo,idCliente,editarArticulo,setEditarArticulo}) {
     const [nombreArticulo,setNombreArticulo]=useState("")
     const [precio,setPrecio]=useState("")
     const [error2,setError2]=useState(false)
+
+    useEffect(()=>{
+        if (Object.keys(editarArticulo).length>0) {
+            setNombreArticulo(editarArticulo.nombreArticulo)
+            setPrecio(editarArticulo.precio)
+        }
+    },[])
     
     const generarId=()=>{
         let rand=Date.now()
@@ -24,11 +31,20 @@ function ModalArticulos({articulos,setArticulos,setModalArticulos,cerrarBotonNue
             precio,
             idCliente:idCliente
            }
-        
            
-                objetoArticulo.id=generarId()
-                
-                setArticulos([...articulos,objetoArticulo])
+           if (editarArticulo.id) {
+                objetoArticulo.id=editarArticulo.id
+                objetoArticulo.idCliente=editarArticulo.idCliente
+                const articulosActualizados = articulos.map(i=>i.id === editarArticulo.id ? objetoArticulo : i )
+            setArticulos(articulosActualizados)
+            setEditarArticulo({})
+
+           } else {
+               objetoArticulo.id=generarId()
+               setArticulos([...articulos,objetoArticulo])
+               setEditarArticulo({})
+           }
+           
                 
            }
         }
@@ -36,13 +52,13 @@ function ModalArticulos({articulos,setArticulos,setModalArticulos,cerrarBotonNue
     
 
     return (
-        <div className='bg-black h-full w-full fixed top-0 opacity-90 cursor-pointer'>
+        <div className='bg-black h-full w-full fixed top-0 opacity-95 '>
             <div className='bg-white mt-10 mx-auto rounded-full w-7 text-center cursor-pointer'>
-                <input className='' type="button" value="X" 
+                <input className='cursor-pointer' type="button" value="X" 
                 onClick={cerrarBotonNuevoArticulo}
                 />
             </div>
-            <form className=' w-3/4 bg-red-50 mx-auto my-10 h-2/5  p-5' action=""
+            <form className=' w-3/4 lg:w-2/4 bg-red-50 mx-auto my-10 h-2/5  p-5' action=""
             onSubmit={handleSubmit}
             >
                 <div className=' h-10'>
@@ -51,13 +67,13 @@ function ModalArticulos({articulos,setArticulos,setModalArticulos,cerrarBotonNue
                 <div className='h-2 bg-white'></div>
                 <div>
                     <label className='text-xl font-bold' htmlFor="nombreArticulo">Nombre Articulo</label>
-                    <input className='mb-5 block w-full h-10 border-2' type="text" id='nombreArticulo'
+                    <input className='mb-5 block w-full h-10 border-2 text-center' type="text" id='nombreArticulo'
                     value={nombreArticulo}
                     onChange={e=>setNombreArticulo(e.target.value)}
                     />
 
                     <label className='text-xl font-bold' htmlFor="precio">Precio</label>
-                    <input className='block w-full h-10 border-2' type="number" id='precio' 
+                    <input className='block w-full h-10 border-2 text-center' type="number" id='precio' 
                     value={precio}
                     onChange={e=>setPrecio(Number(e.target.value))}
                     />

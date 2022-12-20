@@ -6,6 +6,7 @@ import Clientes from './components/Clientes'
 import Header from './components/Header'
 import ModalFecha from './components/ModalFecha'
 import ListarFechas from './components/ListarFechas'
+import Footer from './components/Footer'
 
 
 
@@ -90,6 +91,9 @@ function App() {
       />
     )}
     
+    
+    <Footer/>
+
     
     </>
   )

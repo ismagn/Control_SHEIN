@@ -20,9 +20,10 @@ function ListarArticulos({articulos,setModalArticulos,idCliente,setTotal,borrarA
     var cont=1
     return (
         <div>
-            <div className='h-screen'>
-                <h2 className='m-5 text-center font-bold text-2xl opacity-50'>Articulos</h2>
-                <div className='h-2/6  overflow-y-auto'>
+            <div className=''>
+                <h2 className='m-2 text-center font-bold text-2xl text-pink-500 opacity-80'>Articulos</h2>
+                
+                <div className='h-60  overflow-y-auto'>
                 {
                 articuloSeleccionado.map((i)=>(
                     <>
@@ -41,8 +42,8 @@ function ListarArticulos({articulos,setModalArticulos,idCliente,setTotal,borrarA
                 </div>
             </div>
             
-            <div className='bg-pink-500 fixed cursor-pointer bottom-10 right-10 rounded-full w-10 text-center'>
-                <input className='text-4xl text-white cursor-pointer' type="button" value="+" 
+            <div className=' fixed  animate-bounce bottom-10 w-full text-center cursor-pointer lg:text-right lg:right-56 rig'>
+                <input className='text-4xl rounded-full w-10 h-10 bg-pink-500 text-white cursor-pointer' type="button" value="+" 
                 onClick={()=>setModalArticulos(true)}
                 />
             </div>

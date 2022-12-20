@@ -7,7 +7,7 @@ function ModalAnticipo({idCliente,setModalAnticipo,anticipos,setAnticipos}) {
 
     const handleSubmit=(e)=>{
         e.preventDefault();
-        if (cantidad==""){
+        if (cantidad===undefined || cantidad==""){
             setError(true)
         }else{
             setError(false)
@@ -27,16 +27,12 @@ function ModalAnticipo({idCliente,setModalAnticipo,anticipos,setAnticipos}) {
 
     return (
         <div className='bg-black h-full w-full fixed top-0 opacity-95 '>
-            <div className='bg-white mt-10 mx-auto rounded-full w-7 text-center cursor-pointer'>
-                <input className='cursor-pointer' type="button" value="X" 
-                onClick={()=>setModalAnticipo(false)}
-                />
-            </div>
-            <form className=' w-3/4 lg:w-2/4 bg-red-50 mx-auto my-10 h-2/5  p-5' action=""
+            
+            <form className=' w-3/4 lg:w-2/4 bg-red-50 mx-auto my-10 h-h-3/6  p-5' action=""
             onSubmit={handleSubmit}
             >
                 <div className=' h-10'>
-                <h2 className='text-black font-bold text-center text-lg'>NUEVO ANTICIPO</h2>
+                <h2 className='text-pink-500 font-bold text-center text-lg'>NUEVO ANTICIPO</h2>
                 </div>
                 <div className='h-2 bg-white'></div>
                 <div>
@@ -47,8 +43,8 @@ function ModalAnticipo({idCliente,setModalAnticipo,anticipos,setAnticipos}) {
                     />
 
                     
-                    <div className='text-center my-5 cursor-pointer'>
-                    <input className=' bg-red-300 cursor-pointer rounded-lg p-2 font-bold' type="submit" value="AÑADIR ANTICIPO" />
+                    <div className='text-center my-5 cursor-pointer p-5 '>
+                    <input className=' bg-pink-500 text-white cursor-pointer rounded-lg p-2 font-bold' type="submit" value="AÑADIR ANTICIPO" />
                     </div>
                     <div>
                     {error &&
@@ -58,6 +54,12 @@ function ModalAnticipo({idCliente,setModalAnticipo,anticipos,setAnticipos}) {
                     
                 </div>
             </form>
+            <div className='bg-white mt-10 mx-auto rounded-full w-10 h-10 text-center cursor-pointer'
+            onClick={()=>setModalAnticipo(false)}
+            >
+                <input className='cursor-pointer p-1 text-red-600 font-bold text-2xl' type="button" value="X" 
+                />
+            </div>
         </div>
     )
 }

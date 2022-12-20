@@ -60,8 +60,12 @@ function InfoCliente({idCliente,idFecha,clientes,setInfoCliente,fechas}) {
     }
 
     const borrarAnticipo=()=>{  
-        const nuevosAnticipos = anticipos.filter(i=>i.id !== idCliente)
-        setAnticipos(nuevosAnticipos)
+        const res=confirm("¿segura que deseas borrar el anticipo?")
+        if (res) {
+            const nuevosAnticipos = anticipos.filter(i=>i.id !== idCliente)
+            setAnticipos(nuevosAnticipos)
+            
+        }
     }
     
     const seleccionCliente=()=>{
@@ -85,14 +89,14 @@ function InfoCliente({idCliente,idFecha,clientes,setInfoCliente,fechas}) {
             {seleccionCliente().map(i=>(
                 <>
                 <div className=' flex items-center justify-between px-5 bg-white'>
-                    <div className='mr-20'>
+                    <div className='mr-12'>
                         <button className='bg-pink-500 rounded-lg p-2 text-white'
                         onClick={()=>setInfoCliente(false)}
                         >Atras</button>
                     </div>
                     <div className='text-center'>
                         <h2 className='text-md opacity-60 font-bold'>Fecha: {seleccionFecha()}</h2>
-                        <h2 className='text-xl font-bold opacity-60 '>{i.nombre}</h2>
+                        <h2 className='text-md font-bold opacity-60 '>Nombre: {i.nombre}</h2>
                     </div>
                 </div>
                 </>

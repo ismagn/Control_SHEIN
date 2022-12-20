@@ -3,8 +3,9 @@ import React from 'react'
 function Header() {
     return (
         <>
-        <div className='w-full bg-pink-500 text-center p-5 lg:p-8 h-36 shadow-lg'>
-            <h1 className='font-bold text-5xl lg:text-7xl text-white'>STEPHANIE'S SHEIN</h1>
+        <div className='header  w-full bg-pink-500 text-center p-1 lg:p-8 h-30 shadow-lg lg:flex justify-center items-center'>
+            <h1 className=' stephanie text-7xl lg:text-8xl text-white'>Stephanie's </h1>
+            <span className='text-white font-bold text-3xl font-serif '>SHEIN</span>
            
         </div>
         

@@ -56,11 +56,7 @@ function ModalFecha({setModalFecha,fechas,setFechas,editarFecha,setEditarFecha,a
 
     return (
         <div className='bg-black h-screen w-full fixed top-0 opacity-95'>
-            <div className='bg-white mt-10 mx-auto rounded-full w-7  text-center cursor-pointer'
-            onClick={accionesCerrarModalFecha}
-            >
-                <input className='cursor-pointer' type="button" value="X" />
-            </div>
+            
             <form className={`modal ${animarModal ? "animar" : ""} w-5/6 md:w-2/4 bg-white h-2/4 text-center mx-auto my-10 p-10`}action=""
             onSubmit={handleSubmit}>
                 <h2 className='text-2xl font-bold text-pink-700 shadow-lg'>AGREGA UNA FECHA</h2>
@@ -70,8 +66,12 @@ function ModalFecha({setModalFecha,fechas,setFechas,editarFecha,setEditarFecha,a
                 />
                     <input className='mt-10 bg-pink-500 w-2/3 mx-auto text-white p-1' type="submit" value="Agregar" 
                     />
-                
             </form>
+            <div className='bg-white mt-14 mx-auto rounded-full w-10 h-10  text-center cursor-pointer'
+            onClick={accionesCerrarModalFecha}
+            >
+                <input className='cursor-pointer p-1 text-red-600 font-bold text-2xl' type="button" value="X" />
+            </div>
         </div>
     )
 }

@@ -7,14 +7,15 @@ function ListarClientes({setModalClientes,clientes,setInfoCliente,setIdCliente,m
     
     return (
         <div>
-            <div className='  h-screen '>
+            <div className=''>
                 <div className='bg-white'>
                 <button className='bg-pink-500 rounded-md text-white m-2 p-1'
                 onClick={()=>setValidClientes(false)}
                 >Atras</button>
                 </div>
-                <h2 className=' my-5 text-center font-bold text-2xl opacity-50'>CLIENTES</h2>
-                <div className=' h-3/5 overflow-y-auto'>
+                <h2 className=' mt-2  text-pink-500 text-center font-bold text-2xl opacity-80'>CLIENTES</h2>
+                <p className='text-center text-pink-400 text-sm font-bold opacity-10 animate-pulse'>--Desliza para Editar o Eliminar--</p>
+                <div className='h-96 overflow-y-auto'>
                 {ClientesFecha.map((i)=>(
                     
                     <Cliente
@@ -33,10 +34,10 @@ function ListarClientes({setModalClientes,clientes,setInfoCliente,setIdCliente,m
                 </div>
             </div>
 
-            <div className='bg-pink-500 fixed cursor-pointer bottom-10 right-10 rounded-full w-10 text-center'>
-                <input className='text-4xl text-white cursor-pointer' type="button" value="+" 
-                onClick={()=>setModalClientes(true)}
-                />
+            <div className='bg-pink-500 animate-pulse  cursor-pointer mx-auto p-2 rounded-md mt-2 w-36 text-center'
+            onClick={()=>setModalClientes(true)}
+            >
+                <input className='text-md text-white cursor-pointer font-semibold' type="button" value="Añadir Cliente" />
             </div>
         </div>
     )

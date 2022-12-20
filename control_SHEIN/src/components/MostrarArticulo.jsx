@@ -31,7 +31,7 @@ function MostrarArticulo({i,cont,borrarArticulo,metodoEditarArticulo}) {
             trailingActions={trailingActions()}
             >
             <div className='grid grid-cols-2 px-2 lg:px-10 bg-white hover:bg-pink-300 active:bg-pink-300 rounded-md py-3 shadow-lg w-full mb-3'>
-            <h2 className='font-bold text-md lg:text-xl  text-purple-500'>{cont}.-<span>{i.nombreArticulo.toUpperCase()}</span></h2>
+            <h2 className='font-bold text-sm lg:text-xl  text-purple-500'>{cont}.-<span>{i.nombreArticulo.toUpperCase()}</span></h2>
             <h2 className='font-bold text-md lg:text-xl text-end text-pink-600'>${i.precio}</h2>
             </div>
             </SwipeableListItem>

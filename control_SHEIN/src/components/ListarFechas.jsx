@@ -5,18 +5,20 @@ function ListarFechas({fechas,mostrarClienteFecha,eliminarFecha,metodoEditarFech
     return (
         <div>
             <h2 className='text-center m-4 font-bold text-pink-500 text-3xl'>FECHAS</h2>
+            <p className='text-center my-1 text-pink-400 text-md font-bold opacity-10 animate-pulse'>--Desliza para Editar o Eliminar--</p>
             {fechas.map((i)=>(
-                    <MostrarFecha 
-                    i={i} 
-                    key={i.id}
-                    mostrarClienteFecha={mostrarClienteFecha}
-                    eliminarFecha={eliminarFecha}
-                    metodoEditarFecha={metodoEditarFecha}
-                    />
+                <MostrarFecha 
+                i={i} 
+                key={i.id}
+                mostrarClienteFecha={mostrarClienteFecha}
+                eliminarFecha={eliminarFecha}
+                metodoEditarFecha={metodoEditarFecha}
+                />
                 ))   
-                }
-            <div className='bg-pink-500 fixed animate-bounce  cursor-pointer bottom-10 right-10 rounded-full w-10 text-center'>
-            <input className='text-4xl text-white cursor-pointer' type="button" value="+" 
+            }
+            
+            <div className='fixed animate-bounce  bottom-20 w-full  text-center'>
+            <input className='bg-pink-500 text-4xl rounded-full w-12 h-12 text-white cursor-pointer' type="button" value="+" 
             onClick={accionesModalFecha}
             />
         </div>

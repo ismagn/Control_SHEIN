@@ -2,15 +2,19 @@ import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
 
-function ModalFecha({setModalFecha,fechas,setFechas,editarFecha,setEditarFecha,animarModal,setAnimarModal,accionesCerrarModalFecha}) {
+function ModalFecha({setModalFecha,fechas,setFechas,editarFecha,setEditarFecha,animarModal,setAnimarModal,accionesCerrarModalFecha,setContador,contador}) {
     const [fecha,setFecha]=useState()
-    console.log(fecha);
 
 
     const generarId=()=>{
         let rand=Date.now()
         return rand
       }
+
+    const generarColor=()=>{
+        const cont=contador
+        return cont
+    }
 
     const formatearFecha=(fecha)=>{
         const fechaNueva=new Date(fecha)
@@ -19,7 +23,7 @@ function ModalFecha({setModalFecha,fechas,setFechas,editarFecha,setEditarFecha,a
             month:'long',
             day:'numeric',
         }
-        console.log("hola")
+        
         const w = fechaNueva.getUTCDate()
         const x= fechaNueva.getUTCMonth()+1
         const y= fechaNueva.getUTCFullYear()
@@ -49,7 +53,10 @@ function ModalFecha({setModalFecha,fechas,setFechas,editarFecha,setEditarFecha,a
            setEditarFecha({})
            } else {
             objetoFecha.id=generarId()
+            objetoFecha.color=generarColor()
+            setContador(contador+1)
             setFechas([...fechas,objetoFecha])
+
            }
     }
 }

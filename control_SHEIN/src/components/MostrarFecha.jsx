@@ -30,7 +30,7 @@ const trailingActions=()=>(
             leadingActions={leadingActions()}
             trailingActions={trailingActions()}
             >
-      <h2 className='bg-white  hover:bg-pink-300 active:bg-pink-300 text-purple-500 font-bold p-3 text-center text-xl w-full rounded-md my-3 cursor-pointer shadow-lg'
+      <h2 className={`bg-white ${i.color==0 && "border-yellow-500 border-4"} ${i.color==1  && " border-lime-500 border-4"} ${i.color==2  && " border-blue-500 border-4"} ${i.color==3  && " border-cyan-400 border-4"} ${i.color==4  && " border-black border-4"} ${i.color==5 && "  border-violet-500 border-4"} ${i.color==6 && " border-red-500 border-4"} ${i.color==7 && " border-green-500 border-4"} ${i.color==8 && " border-orange-400 border-4"} ${i.color==9 && "border-slate-400 border-4"} hover:bg-pink-300 active:bg-pink-300 text-purple-500 font-bold p-3 text-center text-xl w-full rounded-md my-3 cursor-pointer shadow-lg`}
       onClick={()=>mostrarClienteFecha(i.id)}
       >{i.fecha}</h2>
         </SwipeableListItem>

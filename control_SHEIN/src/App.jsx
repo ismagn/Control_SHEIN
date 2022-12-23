@@ -7,6 +7,8 @@ import Header from './components/Header'
 import ModalFecha from './components/ModalFecha'
 import ListarFechas from './components/ListarFechas'
 import Footer from './components/Footer'
+import ListarNotas from './components/ListarNotas'
+import ModalNotas from './components/ModalNotas'
 
 
 
@@ -17,11 +19,41 @@ function App() {
   const [animarModal,setAnimarModal]=useState(false)
   const [idFecha,setIdFecha]=useState()
   const [editarFecha,setEditarFecha]=useState({})
+  const [contador,setContador]=useState(JSON.parse(localStorage.getItem('contador')) ?? 0)
+  const [modalListarNotas,setModalListarNotas]=useState(false)
+  const [modalNewNota,setModalNewNota]=useState(false)
+  const [notas,setNotas]=useState(JSON.parse(localStorage.getItem('notas')) ?? [])
+  const [animarNotas,setAnimarNotas]=useState(false)
+  const [totalNotas,setTotalNotas]=useState()
 
+  useEffect(()=>{
+    localStorage.setItem('notas',JSON.stringify(notas));
+    const res = notas.map(i=>i.precioNota)
+    const sum=res.reduce((acc,des)=>{
+      return acc+des;
+  },0)
+    setTotalNotas(sum)
+  },[notas])
 
   useEffect(()=>{
     localStorage.setItem('fechas',JSON.stringify(fechas));
+    localStorage.setItem('contador',JSON.stringify(contador));
+    if (contador>9) {
+      setContador(0)
+    }
   },[fechas])
+
+  const cerrarModalNewNota =()=>{
+    setModalNewNota(false)
+    setAnimarModal(false)
+}
+
+const accionesModalNewNota=()=>{
+    setModalNewNota(true)
+    setTimeout(()=>{
+      setAnimarModal(true)
+    },0)
+}
 
   const accionesCerrarModalFecha=()=>{
     setModalFecha(false)
@@ -34,6 +66,30 @@ function App() {
     setTimeout(()=>{
       setAnimarModal(true)
     },0)
+  }
+
+  const accionesModalNotas=()=>{
+  setModalListarNotas(true)
+
+    setTimeout(()=>{
+      setAnimarNotas(true)
+    },0)
+  }
+
+  const cerrarNotas=()=>{
+    setModalListarNotas(false)
+    setTimeout(()=>{
+      setAnimarNotas(false)
+    },0)
+    
+  }
+
+  const eliminarNota=(id)=>{
+    const res=confirm("¿Deseas eliminar este articulo?")
+    if (res) {
+      const notasActualizadas=notas.filter(i=>i.id!==id )
+      setNotas(notasActualizadas)
+    }
   }
 
   const mostrarClienteFecha =(id)=>{
@@ -75,6 +131,7 @@ function App() {
         accionesModalFecha={accionesModalFecha}
         eliminarFecha={eliminarFecha}
         metodoEditarFecha={metodoEditarFecha}
+        accionesModalNotas={accionesModalNotas}
         />
     )}
 
@@ -88,8 +145,33 @@ function App() {
       animarModal={animarModal}
       setAnimarModal={setAnimarModal}
       accionesCerrarModalFecha={accionesCerrarModalFecha}
+      setContador={setContador}
+      contador={contador}
       />
     )}
+
+    {modalListarNotas && (
+      <ListarNotas
+      cerrarNotas={cerrarNotas}
+      accionesModalNewNota={accionesModalNewNota}
+      notas={notas}
+      totalNotas={totalNotas}
+      eliminarNota={eliminarNota}
+      animarNotas={animarNotas}
+      />
+    )}
+
+    {modalNewNota && 
+        <ModalNotas
+        setModalNewNota={setModalNewNota}
+        cerrarModalNewNota={cerrarModalNewNota}
+        setNotas={setNotas}
+        notas={notas}
+        animarModal={animarModal}
+        setAnimarModal={setAnimarModal}
+        />
+        }
+    
     
     
     <Footer/>

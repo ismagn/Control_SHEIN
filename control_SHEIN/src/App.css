@@ -35,6 +35,16 @@ body {
 
 }
 
+.Panel_notas{
+  transform: scaleY(0);
+  transition: .3s;
+}
+
+.animarNotas{
+  transform-origin: bottom;
+ transform: scaleY(1);
+}
+
 .stephanie{
   font-family: corinthia;
   font-weight: bolder;

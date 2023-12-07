@@ -1,8 +1,8 @@
 import React from 'react'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import MostrarArticulo from './MostrarArticulo'
 
-function ListarArticulos({articulos,setModalArticulos,idCliente,setTotal,borrarArticulo,metodoEditarArticulo}) {
+function ListarArticulos({idFecha,setTotal1,total,total1,articulos,setModalArticulos,idCliente,setTotal,borrarArticulo,metodoEditarArticulo}) {
 
 
     const articuloSeleccionado = articulos.filter(i=>i.idCliente==idCliente); 
@@ -17,11 +17,29 @@ function ListarArticulos({articulos,setModalArticulos,idCliente,setTotal,borrarA
     
     setTotal(SumaPrecioArticulos())
 
+    useEffect(()=>{
+        const objetoTot ={
+            total,
+            id:idCliente,
+            idFecha:idFecha
+           }
+        const totNew=total1.filter(i=>i.id!==objetoTot.id)
+        setTotal1(totNew)
+
+        setTotal1([...totNew,objetoTot])
+    },[total])
+
     var cont=1
     return (
         <div>
             <div className=''>
                 <h2 className='m-2 text-center font-bold text-2xl text-pink-500 opacity-80'>Articulos</h2>
+
+                <div className='   animate-bounce  w-full text-center cursor-pointer lg:text-right lg:right-56 my-2'>
+                <input className='text-4xl rounded-full w-10 h-10 bg-pink-500 text-white cursor-pointer' type="button" value="+" 
+                onClick={()=>setModalArticulos(true)}
+                />
+                </div>
                 
                 <div className='h-60  overflow-y-auto'>
                 {
@@ -42,11 +60,6 @@ function ListarArticulos({articulos,setModalArticulos,idCliente,setTotal,borrarA
                 </div>
             </div>
             
-            <div className=' fixed  animate-bounce bottom-10 w-full text-center cursor-pointer lg:text-right lg:right-56 rig'>
-                <input className='text-4xl rounded-full w-10 h-10 bg-pink-500 text-white cursor-pointer' type="button" value="+" 
-                onClick={()=>setModalArticulos(true)}
-                />
-            </div>
         </div>
     )
 }

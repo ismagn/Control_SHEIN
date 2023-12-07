@@ -5,8 +5,11 @@ import ListarArticulos from './ListarArticulos';
 import ModalAnticipo from './ModalAnticipo';
 import ModalArticulos from './ModalArticulos';
 import PanelAnticipos from './PanelAnticipos';
+import useShein from '../hook/useShein';
 
 function InfoCliente({idCliente,idFecha,clientes,setInfoCliente,fechas}) {
+
+    const {total1,setTotal1,restante1,setRestante1} = useShein()
 
     const [articulos,setArticulos]=useState(JSON.parse(localStorage.getItem('articulos')) ?? []);
     const [editarArticulo,setEditarArticulo]=useState({})
@@ -33,8 +36,21 @@ function InfoCliente({idCliente,idFecha,clientes,setInfoCliente,fechas}) {
         const restant=total-sumAn
         setMostrarAnticipo(sumAn)
         setRestante(restant)
-        
     })
+
+    useEffect(()=>{
+        const objetoRes ={
+            restante,
+            id:idCliente,
+            idFecha:idFecha
+           }
+        const resNew=restante1.filter(i=>i.id!==objetoRes.id)
+        setRestante1(resNew)
+
+        setRestante1([...resNew,objetoRes])
+    },[restante])
+
+    
 
     useEffect(()=>{
         localStorage.setItem('anticipos',JSON.stringify(anticipos));
@@ -44,6 +60,19 @@ function InfoCliente({idCliente,idFecha,clientes,setInfoCliente,fechas}) {
         localStorage.setItem('articulos',JSON.stringify(articulos));
     },[articulos])
 
+    useEffect(()=>{
+        localStorage.setItem('restante1',JSON.stringify(restante1));
+    },[restante1])
+
+    useEffect(()=>{
+        localStorage.setItem('total1',JSON.stringify(total1));
+    },[total1])
+
+
+    const contarArticulos =()=>{
+        const newArticulos = articulos.filter(i=>i.idCliente === idCliente)
+        return newArticulos.length
+      }
 
     const metodoEditarArticulo=(i)=>{
         setEditarArticulo(i)
@@ -97,6 +126,7 @@ function InfoCliente({idCliente,idFecha,clientes,setInfoCliente,fechas}) {
                     <div className='text-center'>
                         <h2 className='text-md opacity-60 font-bold'>Fecha: {seleccionFecha()}</h2>
                         <h2 className='text-md font-bold opacity-60 '>Nombre: {i.nombre}</h2>
+                        <h2 className='text-md font-bold opacity-60 '>Articulos: {contarArticulos()}</h2>
                     </div>
                 </div>
                 </>
@@ -121,10 +151,13 @@ function InfoCliente({idCliente,idFecha,clientes,setInfoCliente,fechas}) {
                 setArticulos={setArticulos}
                 setModalArticulos={setModalArticulos}
                 idCliente={idCliente}
+                total={total}
+                total1={total1}
                 setTotal={setTotal}
+                setTotal1={setTotal1}
                 borrarArticulo={borrarArticulo}
                 metodoEditarArticulo={metodoEditarArticulo}
-                
+                idFecha={idFecha}
                 />
             </div>
 

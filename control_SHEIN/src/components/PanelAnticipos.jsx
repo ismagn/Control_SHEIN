@@ -18,11 +18,11 @@ function PanelAnticipos({total,setModalAnticipo,restante,mostrarAnticipo,borrarA
                 circleRatio={1}
                 styles={{
                     path:{
-                        stroke: porcentaje > 100 ? 'rgb(235, 0, 0)' :'rgb(249, 89, 183)',
+                        stroke: porcentaje > 100 ? 'rgb(235, 0, 0)' :'rgb(241, 114, 233)',
                        
                     },
                     text:{
-                        fill: porcentaje > 100 ? 'rgb(235, 0, 0)' :'rgb(249, 89, 183)',
+                        fill: porcentaje > 100 ? 'rgb(235, 0, 0)' :'rgb(241, 114, 233)',
                         fontSize: '8px'
                     },
 
@@ -36,7 +36,7 @@ function PanelAnticipos({total,setModalAnticipo,restante,mostrarAnticipo,borrarA
             </div>
         </div>
         <div className='w-full text-center'>
-            <button className='p-2 bg-pink-500 rounded-xl m-1 text-white'
+            <button className='p-2 bg-purple-500 rounded-xl m-1 text-white'
             onClick={()=>setModalAnticipo(true)}
             >Añadir Anticipo</button>
             

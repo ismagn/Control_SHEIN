@@ -16,6 +16,11 @@ function Clientes({idFecha,setValidClientes,fechas}) {
     localStorage.setItem('clientes',JSON.stringify(clientes));
   },[clientes])
 
+  const contarClientes =()=>{
+    const newClientes = clientes.filter(i=>i.idFecha === idFecha)
+    return newClientes.length
+  }
+
   const eliminarCliente=(id)=>{
     const res=confirm("¿seguro que deseas eliminar este cliente y sus datos?")
     if (res) {
@@ -64,6 +69,8 @@ function Clientes({idFecha,setValidClientes,fechas}) {
       idFecha={idFecha}
       setValidClientes={setValidClientes}
       MetodoEditarCliente={MetodoEditarCliente}
+      contarClientes={contarClientes}
+      fechas={fechas}
       />
         </>
       }

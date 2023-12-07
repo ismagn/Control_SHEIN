@@ -38,7 +38,7 @@ function ModalNotas({cerrarModalNewNota,setModalNewNota,setNotas,notas,animarMod
             onSubmit={handleSubmit}
             >
                 <div className=' h-10'>
-                <h2 className='text-pink-500 font-bold text-center text-lg'>NUEVA NOTA</h2>
+                <h2 className='text-purple-500 font-bold text-center text-lg'>NUEVA NOTA</h2>
                 </div>
                 <div className='h-2 bg-white'></div>
                 <div>
@@ -54,7 +54,7 @@ function ModalNotas({cerrarModalNewNota,setModalNewNota,setNotas,notas,animarMod
                     onChange={e=>setPrecioNota(Number(e.target.value))}
                     />
                     <div className='text-center my-5 cursor-pointer'>
-                    <input className=' bg-pink-500 text-white cursor-pointer rounded-lg p-2 font-bold' type="submit" value="AÑADIR" />
+                    <input className=' bg-purple-500 text-white cursor-pointer rounded-lg p-2 font-bold' type="submit" value="AÑADIR" />
                     </div>
                     <div>
                     {error3 &&

@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import "tailwindcss/tailwind.css"
 import './App.css'
+import { Link } from "react-router-dom"
 import Clientes from './components/Clientes'
 import Header from './components/Header'
 import ModalFecha from './components/ModalFecha'
@@ -9,6 +10,7 @@ import ListarFechas from './components/ListarFechas'
 import Footer from './components/Footer'
 import ListarNotas from './components/ListarNotas'
 import ModalNotas from './components/ModalNotas'
+import useShein from './hook/useShein'
 
 
 
@@ -17,7 +19,6 @@ function App() {
   const [fechas,setFechas]=useState(JSON.parse(localStorage.getItem('fechas')) ?? [])
   const [modalFecha,setModalFecha]=useState(false)
   const [animarModal,setAnimarModal]=useState(false)
-  const [idFecha,setIdFecha]=useState()
   const [editarFecha,setEditarFecha]=useState({})
   const [contador,setContador]=useState(JSON.parse(localStorage.getItem('contador')) ?? 0)
   const [modalListarNotas,setModalListarNotas]=useState(false)
@@ -25,6 +26,8 @@ function App() {
   const [notas,setNotas]=useState(JSON.parse(localStorage.getItem('notas')) ?? [])
   const [animarNotas,setAnimarNotas]=useState(false)
   const [totalNotas,setTotalNotas]=useState()
+
+  const {idFecha,setIdFecha} = useShein()
 
   useEffect(()=>{
     localStorage.setItem('notas',JSON.stringify(notas));
@@ -117,6 +120,8 @@ const accionesModalNewNota=()=>{
       <Header/>
     </div>
     
+    
+
     {validClientes ? (
       <Clientes
       setValidClientes={setValidClientes}

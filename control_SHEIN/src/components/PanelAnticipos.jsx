@@ -3,14 +3,17 @@ import { useState } from 'react'
 import ModalAnticipo from './ModalAnticipo'
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import {Fade} from 'react-reveal';
+
 
 function PanelAnticipos({total,setModalAnticipo,restante,mostrarAnticipo,borrarAnticipo,porcentaje}) {
     
 
     return (
-        <div className='mx-2 lg:w-2/5 lg:mx-auto bg-slate-50 shadow-lg rounded-xl'>
-        <div className='h-30 lg:h-56 mt-2 mx-5  grid grid-cols-2 text-center'>
-        <div className='grafica my-auto py-1 w-3/5 md:w-2/6 lg:w-3/5 mx-auto font-bold '>
+        <Fade bottom>
+        <div className='mx-2  bg-slate-50 shadow-lg rounded-xl'>
+        <div className='h-30 lg:h-96 mt-2 mx-5  grid grid-cols-2 text-center'>
+        <div className='grafica my-auto py-1 w-3/5 md:w-2/6 lg:w-4/5 mx-auto font-bold '>
             <CircularProgressbar
                 value={porcentaje}
                 text={`${porcentaje >= 100 ? "liquidado" : "Abonado:  %"+porcentaje} `}
@@ -30,9 +33,9 @@ function PanelAnticipos({total,setModalAnticipo,restante,mostrarAnticipo,borrarA
             />
         </div>
             <div className='my-auto lg:bg-pink-100 p-2 lg:mr-10 rounded-xl text-start'>
-                <h2 className='font-bold text-sm '>TOTAL: <span className='text-green-600'>$ {total}</span> </h2>
-                <h2 className='font-bold text-sm'>ANTICIPO: <span className='text-green-600'>$ {mostrarAnticipo}</span> </h2>
-                <h2 className='font-bold text-sm' >RESTANTE: <span className='text-red-600'>$ {restante}</span></h2>
+                <h2 className='font-bold text-sm lg:text-2xl'>TOTAL: <span className='text-green-600'>$ {total}</span> </h2>
+                <h2 className='font-bold text-sm lg:text-2xl'>ANTICIPO: <span className='text-green-600'>$ {mostrarAnticipo}</span> </h2>
+                <h2 className='font-bold text-sm lg:text-2xl' >RESTANTE: <span className='text-red-600'>$ {restante}</span></h2>
             </div>
         </div>
         <div className='w-full text-center'>
@@ -48,6 +51,7 @@ function PanelAnticipos({total,setModalAnticipo,restante,mostrarAnticipo,borrarA
         </div>
         
         </div>
+        </Fade>
     )
 }
 

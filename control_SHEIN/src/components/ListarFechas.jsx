@@ -1,10 +1,15 @@
 import React from 'react'
 import MostrarFecha from './MostrarFecha'
+import Fade from 'react-reveal'
+
 
 function ListarFechas({fechas,mostrarClienteFecha,eliminarFecha,metodoEditarFecha,accionesModalFecha,accionesModalNotas}) {
     return (
+        <Fade>
         <div>
+            <Fade bottom>
             <h2 className='text-center mt-2 font-bold text-pink-500 text-3xl'>PEDIDOS</h2>
+            </Fade>
             <p className='text-center my-1 text-pink-500 text-md font-bold opacity-10 animate-pulse'>--Desliza para Editar o Eliminar--</p>
             
             <div className='flex justify-around animate-bounce w-full  my-4 '>
@@ -32,6 +37,7 @@ function ListarFechas({fechas,mostrarClienteFecha,eliminarFecha,metodoEditarFech
             }
             </div>
         </div>
+        </Fade>
     )
 }
 

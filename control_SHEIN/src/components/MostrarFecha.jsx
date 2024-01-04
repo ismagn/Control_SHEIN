@@ -7,6 +7,7 @@ import {
   TrailingActions,
 } from 'react-swipeable-list';
 import 'react-swipeable-list/dist/styles.css';
+import {Fade} from 'react-reveal'
 
 function MostrarFecha({i,mostrarClienteFecha,eliminarFecha,metodoEditarFecha}) {
   const leadingActions=()=>(
@@ -24,6 +25,7 @@ const trailingActions=()=>(
     </TrailingActions>
 )
   return (
+    <Fade top>
     <div className='w-4/5 mx-auto '>
       <SwipeableList>
           <SwipeableListItem
@@ -36,6 +38,7 @@ const trailingActions=()=>(
         </SwipeableListItem>
       </SwipeableList>
     </div>
+    </Fade>
   )
 }
 

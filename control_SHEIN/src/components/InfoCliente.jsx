@@ -6,12 +6,13 @@ import ModalAnticipo from './ModalAnticipo';
 import ModalArticulos from './ModalArticulos';
 import PanelAnticipos from './PanelAnticipos';
 import useShein from '../hook/useShein';
+import {Fade,Zoom} from 'react-reveal';
 
 function InfoCliente({idCliente,idFecha,clientes,setInfoCliente,fechas}) {
 
-    const {total1,setTotal1,restante1,setRestante1} = useShein()
+    const {total1,setTotal1,restante1,setRestante1,articulos,setArticulos} = useShein()
 
-    const [articulos,setArticulos]=useState(JSON.parse(localStorage.getItem('articulos')) ?? []);
+    
     const [editarArticulo,setEditarArticulo]=useState({})
     const [modalArticulos,setModalArticulos]=useState(false);
     const [modalAnticipo,setModalAnticipo]=useState(false)
@@ -114,6 +115,7 @@ function InfoCliente({idCliente,idFecha,clientes,setInfoCliente,fechas}) {
       }
 
     return (
+        <Fade>
         <div>
             {seleccionCliente().map(i=>(
                 <>
@@ -132,33 +134,34 @@ function InfoCliente({idCliente,idFecha,clientes,setInfoCliente,fechas}) {
                 </>
             ))
             }
-            <div>
-                
-                <PanelAnticipos
-                total={total}
-                idCliente={idCliente}
-                setModalAnticipo={setModalAnticipo}
-                restante={restante}
-                mostrarAnticipo={mostrarAnticipo}
-                borrarAnticipo={borrarAnticipo}
-                porcentaje={porcentaje}
-                />
-            </div>
+            <div className=' lg:flex lg:w-full lg:p-10'>
+                <div className='lg:w-1/2'>
+                    <PanelAnticipos
+                    total={total}
+                    idCliente={idCliente}
+                    setModalAnticipo={setModalAnticipo}
+                    restante={restante}
+                    mostrarAnticipo={mostrarAnticipo}
+                    borrarAnticipo={borrarAnticipo}
+                    porcentaje={porcentaje}
+                    />
+                </div>
 
-            <div>
-                <ListarArticulos
-                articulos={articulos}
-                setArticulos={setArticulos}
-                setModalArticulos={setModalArticulos}
-                idCliente={idCliente}
-                total={total}
-                total1={total1}
-                setTotal={setTotal}
-                setTotal1={setTotal1}
-                borrarArticulo={borrarArticulo}
-                metodoEditarArticulo={metodoEditarArticulo}
-                idFecha={idFecha}
-                />
+                <div className='lg:w-1/2'>
+                    <ListarArticulos
+                    articulos={articulos}
+                    setArticulos={setArticulos}
+                    setModalArticulos={setModalArticulos}
+                    idCliente={idCliente}
+                    total={total}
+                    total1={total1}
+                    setTotal={setTotal}
+                    setTotal1={setTotal1}
+                    borrarArticulo={borrarArticulo}
+                    metodoEditarArticulo={metodoEditarArticulo}
+                    idFecha={idFecha}
+                    />
+                </div>
             </div>
 
         {modalArticulos &&
@@ -170,6 +173,7 @@ function InfoCliente({idCliente,idFecha,clientes,setInfoCliente,fechas}) {
         idCliente={idCliente}
         editarArticulo={editarArticulo}
         setEditarArticulo={setEditarArticulo}
+        idFecha={idFecha}
         />
         }
         {modalAnticipo &&
@@ -181,6 +185,7 @@ function InfoCliente({idCliente,idFecha,clientes,setInfoCliente,fechas}) {
             />
         }
         </div>
+        </Fade>
     )
 }
 

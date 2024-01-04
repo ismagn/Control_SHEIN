@@ -1,4 +1,5 @@
 import React from 'react'
+import {Fade} from 'react-reveal';
 import {
     LeadingActions,
     SwipeableList,
@@ -7,6 +8,7 @@ import {
     TrailingActions,
   } from 'react-swipeable-list';
   import 'react-swipeable-list/dist/styles.css';
+
 
 function Cliente({i,mostrarInfoCliente,eliminarCliente,MetodoEditarCliente}) {
     const leadingActions=()=>(
@@ -25,6 +27,7 @@ function Cliente({i,mostrarInfoCliente,eliminarCliente,MetodoEditarCliente}) {
     )
 
     return (
+        <Fade top>
             <div className=' mx-auto w-4/5'>
         <SwipeableList>
             <SwipeableListItem
@@ -38,6 +41,7 @@ function Cliente({i,mostrarInfoCliente,eliminarCliente,MetodoEditarCliente}) {
             </SwipeableListItem>
         </SwipeableList>
         </div>
+        </Fade>
     )
 }
 

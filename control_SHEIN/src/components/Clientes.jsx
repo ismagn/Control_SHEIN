@@ -4,6 +4,7 @@ import InfoCliente from './InfoCliente'
 import ListarClientes from './ListarClientes'
 import ModalClientes from './ModalClientes'
 
+
 function Clientes({idFecha,setValidClientes,fechas}) {
   const [clientes,setClientes]=useState(JSON.parse(localStorage.getItem('clientes')) ?? []);
   const [modalClientes,setModalClientes]=useState(false);
@@ -49,6 +50,7 @@ function Clientes({idFecha,setValidClientes,fechas}) {
     <div>
       {infoCliente ? (
         <>
+        
         <InfoCliente
         clientes={clientes}
         idCliente={idCliente}
@@ -56,6 +58,7 @@ function Clientes({idFecha,setValidClientes,fechas}) {
         setInfoCliente={setInfoCliente}
         fechas={fechas}
         />
+
         </>
       ):
         <>

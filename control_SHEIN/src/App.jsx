@@ -11,6 +11,7 @@ import Footer from './components/Footer'
 import ListarNotas from './components/ListarNotas'
 import ModalNotas from './components/ModalNotas'
 import useShein from './hook/useShein'
+import {Fade,Flip,Zoom} from 'react-reveal';
 
 
 
@@ -117,18 +118,23 @@ const accionesModalNewNota=()=>{
   return (
     <>
     <div>
+      <Flip top>
       <Header/>
+      </Flip>
     </div>
     
     
 
     {validClientes ? (
+      <Fade>
       <Clientes
       setValidClientes={setValidClientes}
       idFecha={idFecha}
       fechas={fechas}
       />
+      </Fade>
     ) : (
+      
         <ListarFechas
         fechas={fechas}
         mostrarClienteFecha={mostrarClienteFecha}
@@ -138,6 +144,7 @@ const accionesModalNewNota=()=>{
         metodoEditarFecha={metodoEditarFecha}
         accionesModalNotas={accionesModalNotas}
         />
+        
     )}
 
     {modalFecha && (

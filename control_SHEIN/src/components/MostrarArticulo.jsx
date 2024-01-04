@@ -24,7 +24,7 @@ function MostrarArticulo({i,cont,borrarArticulo,metodoEditarArticulo}) {
         </TrailingActions>
     )
     return (
-        <div className='w-5/6 lg:w-2/4 mx-auto'>
+        <div className='w-5/6 lg:w-3/4 mx-auto'>
             <SwipeableList>
             <SwipeableListItem
             leadingActions={leadingActions()}

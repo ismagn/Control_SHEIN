@@ -8,12 +8,16 @@ const SheinProvider = ({children}) => {
     const [idFecha,setIdFecha]=useState()
     const [total1,setTotal1]=useState(JSON.parse(localStorage.getItem('total1')) ?? [])
     const [restante1,setRestante1]=useState(JSON.parse(localStorage.getItem('restante1')) ?? [])
+    const [articulos,setArticulos]=useState(JSON.parse(localStorage.getItem('articulos')) ?? []);
+    const [articulosGlobal,setArticulosGlobal] = useState()
     const [restanteGlobal,setRestanteGlobal] = useState()
     const [totalGlobal,setTotalGlobal] = useState()
 
     const restantesFecha = restante1.filter(i=>i.idFecha == idFecha)
     const TGlobalFecha = total1.filter(i=>i.idFecha == idFecha)
+    const articulosGlobalFecha = articulos.filter(i=>i.idFecha == idFecha)
 
+    
     useEffect(()=>{
         const resTotal = restantesFecha.map(i=>i.restante)
         const sumaRestanteGlobal=resTotal.reduce((acc,des)=>{
@@ -28,7 +32,9 @@ const SheinProvider = ({children}) => {
         setTotalGlobal(sumaTotalGlobal)
     })
 
-
+    useEffect(()=>{
+        setArticulosGlobal(articulosGlobalFecha.length)
+    })
     return (
         <SheinContext.Provider
             value={{
@@ -39,7 +45,10 @@ const SheinProvider = ({children}) => {
                 restanteGlobal,
                 totalGlobal,
                 idFecha,
-                setIdFecha
+                setIdFecha,
+                articulos,
+                setArticulos,
+                articulosGlobal
             }}
         >{children}</SheinContext.Provider>
     )

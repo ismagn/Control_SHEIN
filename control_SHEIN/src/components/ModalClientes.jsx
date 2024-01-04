@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useState } from 'react'
+import {Fade} from 'react-reveal';
 
 function ModalClientes({cerrarBotonNuevoCliente,editarCliente,setEditarCliente,setClientes,clientes,setModalClientes,idFecha}) {
     const[nombre,setNombre]=useState("");
@@ -49,6 +50,7 @@ function ModalClientes({cerrarBotonNuevoCliente,editarCliente,setEditarCliente,s
     
 
     return (
+        <Fade >
         <div className='bg-black h-full w-full fixed top-0 opacity-95 '>
             
             <form className=' w-3/4 lg:w-2/4 bg-red-50 mx-auto my-10 h-3/6  p-5' action=""
@@ -83,6 +85,7 @@ function ModalClientes({cerrarBotonNuevoCliente,editarCliente,setEditarCliente,s
                 <input className='cursor-pointer p-1 text-red-600 font-bold text-2xl' type="button" value="X" />
             </div>
         </div>
+        </Fade>
     )
 }
 

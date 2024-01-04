@@ -1,5 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
+import reactReveal, { Fade } from 'react-reveal';
+
 
 function ModalAnticipo({idCliente,setModalAnticipo,anticipos,setAnticipos}) {
     const [cantidad,setCantidad]=useState()
@@ -26,6 +28,7 @@ function ModalAnticipo({idCliente,setModalAnticipo,anticipos,setAnticipos}) {
         }
 
     return (
+        <Fade>
         <div className='bg-black h-full w-full fixed top-0 opacity-95 '>
             
             <form className=' w-3/4 lg:w-2/4 bg-red-50 mx-auto my-10 h-h-3/6  p-5' action=""
@@ -61,6 +64,7 @@ function ModalAnticipo({idCliente,setModalAnticipo,anticipos,setAnticipos}) {
                 />
             </div>
         </div>
+        </Fade>
     )
 }
 
